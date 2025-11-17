@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh_CN" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="htQuant Team">
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>数据模型 - htQuant</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">htQuant</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">首页</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">快速开始</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../getting-started/installation/" class="dropdown-item">安装</a>
+</li>
+                                    
+<li>
+    <a href="../../getting-started/quickstart/" class="dropdown-item">快速入门</a>
+</li>
+                                    
+<li>
+    <a href="../../getting-started/configuration/" class="dropdown-item">配置</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">用户指南</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../http-client/" class="dropdown-item">HTTP 客户端</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">数据模型</a>
+</li>
+                                    
+<li>
+    <a href="../utilities/" class="dropdown-item">工具类</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../changelog/" class="nav-link">更新日志</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../http-client/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../utilities/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#_1" class="nav-link">数据模型</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#hsstockdata" class="nav-link">HSStockData</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#api" class="nav-link">从 API 响应创建模型</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#pandas" class="nav-link">与 Pandas 集成</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">数据序列化</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">自定义验证</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">数据转换</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_5" class="nav-link">最佳实践</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_6" class="nav-link">相关链接</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="_1">数据模型</h1>
+<p>HongTaQuant 使用 Pydantic 定义数据模型，提供数据验证和类型安全。</p>
+<h2 id="hsstockdata">HSStockData</h2>
+<p>沪深现货行情数据模型，包含完整的股票行情字段。</p>
+<p><strong>字段说明</strong></p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code</code></td>
+<td>str</td>
+<td>标的代码（如 <code>SSE.STK.601236</code>）</td>
+</tr>
+<tr>
+<td><code>tradetime</code></td>
+<td>str</td>
+<td>成交时间</td>
+</tr>
+<tr>
+<td><code>open</code></td>
+<td>float</td>
+<td>开盘价</td>
+</tr>
+<tr>
+<td><code>close</code></td>
+<td>float</td>
+<td>收盘价</td>
+</tr>
+<tr>
+<td><code>high</code></td>
+<td>float</td>
+<td>最高价</td>
+</tr>
+<tr>
+<td><code>low</code></td>
+<td>float</td>
+<td>最低价</td>
+</tr>
+<tr>
+<td><code>volume</code></td>
+<td>float</td>
+<td>成交量</td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td>float</td>
+<td>成交额</td>
+</tr>
+<tr>
+<td><code>sellVolume</code></td>
+<td>float</td>
+<td>内盘</td>
+</tr>
+<tr>
+<td><code>buyVolume</code></td>
+<td>float</td>
+<td>外盘</td>
+</tr>
+<tr>
+<td><code>openInterest</code></td>
+<td>float</td>
+<td>持仓量</td>
+</tr>
+<tr>
+<td><code>tau</code></td>
+<td>float</td>
+<td>tau 值</td>
+</tr>
+<tr>
+<td><code>sigma</code></td>
+<td>float</td>
+<td>历史波动率</td>
+</tr>
+<tr>
+<td><code>d2</code></td>
+<td>float</td>
+<td>d2 值</td>
+</tr>
+<tr>
+<td><code>delta</code></td>
+<td>float</td>
+<td>Delta</td>
+</tr>
+<tr>
+<td><code>gamma</code></td>
+<td>float</td>
+<td>Gamma</td>
+</tr>
+<tr>
+<td><code>vega</code></td>
+<td>float</td>
+<td>Vega</td>
+</tr>
+<tr>
+<td><code>theta</code></td>
+<td>float</td>
+<td>Theta</td>
+</tr>
+<tr>
+<td><code>rho</code></td>
+<td>float</td>
+<td>Rho</td>
+</tr>
+<tr>
+<td><code>bsm_value</code></td>
+<td>float</td>
+<td>期权BSM价格</td>
+</tr>
+<tr>
+<td><code>iv</code></td>
+<td>float</td>
+<td>隐含波动率</td>
+</tr>
+<tr>
+<td><code>rf</code></td>
+<td>float</td>
+<td>无风险利率</td>
+</tr>
+</tbody>
+</table>
+<p><strong>使用示例</strong></p>
+<pre><code class="language-python">from HongTaQuant.HongTaData.models import HSStockData
+
+# 创建数据实例
+data = HSStockData(
+    code=&quot;SSE.STK.601236&quot;,
+    tradetime=&quot;2024-01-01 09:30:00&quot;,
+    open=10.50,
+    close=10.80,
+    high=11.00,
+    low=10.20,
+    volume=1000000.0,
+    amount=10800000.0,
+    sellVolume=500000.0,
+    buyVolume=500000.0,
+    openInterest=0.0,
+    tau=0.0,
+    sigma=0.0,
+    d2=0.0,
+    delta=0.0,
+    gamma=0.0,
+    vega=0.0,
+    theta=0.0,
+    rho=0.0,
+    bsm_value=0.0,
+    iv=0.0,
+    rf=0.0
+)
+
+# 访问字段
+print(f&quot;股票代码: {data.code}&quot;)
+print(f&quot;收盘价: {data.close}&quot;)
+
+# 转换为字典
+data_dict = data.model_dump()
+
+# 转换为 JSON
+data_json = data.model_dump_json()
+</code></pre>
+<p><strong>数据验证</strong></p>
+<pre><code class="language-python">from pydantic import ValidationError
+
+try:
+    # 错误：缺少必需字段
+    data = HSStockData(code=&quot;000001.SZ&quot;)
+except ValidationError as e:
+    print(e)
+
+try:
+    # 错误：类型不匹配
+    data = HSStockData(
+        code=&quot;000001.SZ&quot;,
+        tradetime=&quot;2024-01-01&quot;,
+        open=&quot;invalid&quot;,  # 应该是 float
+        # ... 其他字段
+    )
+except ValidationError as e:
+    print(e)
+</code></pre>
+<h2 id="api">从 API 响应创建模型</h2>
+<pre><code class="language-python">from HongTaQuant.HongTaData.http import HistoricalClient
+from HongTaQuant.HongTaData.models import HSStockData
+
+client = HistoricalClient()
+client.connect()
+
+# 获取数据
+raw_data = client.get_stock_data(
+    period=&quot;day1&quot;,
+    data_type=&quot;stock&quot;,
+    start=&quot;20240101 00:00:00&quot;,
+    end=&quot;20240131 23:59:59&quot;,
+    symbols=[&quot;000001.SZ&quot;],
+    params=&quot;&quot;
+)
+
+# 转换为模型实例
+stock_data = [HSStockData(**record) for record in raw_data]
+
+# 使用模型
+for data in stock_data:
+    print(f&quot;{data.tradetime}: {data.close}&quot;)
+</code></pre>
+<h2 id="pandas">与 Pandas 集成</h2>
+<pre><code class="language-python">import pandas as pd
+from HongTaQuant.HongTaData.models import HSStockData
+
+# 从 DataFrame 创建模型
+df = pd.DataFrame(raw_data)
+stock_data = [HSStockData(**row) for _, row in df.iterrows()]
+
+# 从模型列表创建 DataFrame
+stock_data = [HSStockData(**record) for record in raw_data]
+df = pd.DataFrame([data.model_dump() for data in stock_data])
+</code></pre>
+<h2 id="_2">数据序列化</h2>
+<p><strong>JSON 序列化</strong></p>
+<pre><code class="language-python">import json
+from HongTaQuant.HongTaData.models import HSStockData
+
+data = HSStockData(...)
+
+# 序列化
+json_str = data.model_dump_json()
+
+# 反序列化
+data_restored = HSStockData.model_validate_json(json_str)
+</code></pre>
+<p><strong>字典转换</strong></p>
+<pre><code class="language-python"># 转换为字典
+data_dict = data.model_dump()
+
+# 从字典创建
+data = HSStockData(**data_dict)
+
+# 排除某些字段
+data_dict = data.model_dump(exclude={'tau', 'sigma'})
+
+# 只包含某些字段
+data_dict = data.model_dump(include={'code', 'close', 'volume'})
+</code></pre>
+<h2 id="_3">自定义验证</h2>
+<pre><code class="language-python">from pydantic import field_validator
+from HongTaQuant.HongTaData.models import HSStockData
+
+class ValidatedStockData(HSStockData):
+    @field_validator('close')
+    def validate_close(cls, v):
+        if v &lt;= 0:
+            raise ValueError('收盘价必须大于0')
+        return v
+
+    @field_validator('volume')
+    def validate_volume(cls, v):
+        if v &lt; 0:
+            raise ValueError('成交量不能为负')
+        return v
+</code></pre>
+<h2 id="_4">数据转换</h2>
+<p><strong>价格归一化</strong></p>
+<pre><code class="language-python">def normalize_prices(data_list):
+    &quot;&quot;&quot;归一化价格数据&quot;&quot;&quot;
+    first_close = data_list[0].close
+    return [
+        {
+            **data.model_dump(),
+            'normalized_close': data.close / first_close
+        }
+        for data in data_list
+    ]
+</code></pre>
+<p><strong>计算涨跌幅</strong></p>
+<pre><code class="language-python">def calculate_returns(data_list):
+    &quot;&quot;&quot;计算涨跌幅&quot;&quot;&quot;
+    results = []
+    for i in range(1, len(data_list)):
+        prev_close = data_list[i-1].close
+        curr_close = data_list[i].close
+        return_pct = (curr_close - prev_close) / prev_close * 100
+
+        results.append({
+            **data_list[i].model_dump(),
+            'return_pct': return_pct
+        })
+
+    return results
+</code></pre>
+<h2 id="_5">最佳实践</h2>
+<p><strong>使用类型提示</strong></p>
+<pre><code class="language-python">from typing import List
+from HongTaQuant.HongTaData.models import HSStockData
+
+def process_data(data: List[HSStockData]) -&gt; None:
+    for item in data:
+        # IDE 会提供代码补全
+        print(item.close)
+</code></pre>
+<p><strong>批量验证</strong></p>
+<pre><code class="language-python">def validate_batch(raw_data: list) -&gt; list:
+    validated = []
+    for record in raw_data:
+        try:
+            validated.append(HSStockData(**record))
+        except ValidationError as e:
+            print(f&quot;验证失败: {e}&quot;)
+    return validated
+</code></pre>
+<p><strong>数据缓存</strong></p>
+<pre><code class="language-python">import pickle
+
+# 保存
+with open('stock_data.pkl', 'wb') as f:
+    pickle.dump(stock_data, f)
+
+# 加载
+with open('stock_data.pkl', 'rb') as f:
+    stock_data = pickle.load(f)
+</code></pre>
+<h2 id="_6">相关链接</h2>
+<ul>
+<li><a href="../http-client/">HTTP 客户端</a></li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

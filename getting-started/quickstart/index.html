@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh_CN" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="htQuant Team">
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>快速入门 - htQuant</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">htQuant</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">首页</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">快速开始</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../installation/" class="dropdown-item">安装</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">快速入门</a>
+</li>
+                                    
+<li>
+    <a href="../configuration/" class="dropdown-item">配置</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">用户指南</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../guide/http-client/" class="dropdown-item">HTTP 客户端</a>
+</li>
+                                    
+<li>
+    <a href="../../guide/data-models/" class="dropdown-item">数据模型</a>
+</li>
+                                    
+<li>
+    <a href="../../guide/utilities/" class="dropdown-item">工具类</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../changelog/" class="nav-link">更新日志</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../installation/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../configuration/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#_1" class="nav-link">快速入门</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">基本概念</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">第一个程序</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_7" class="nav-link">环境变量配置</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#hosts" class="nav-link">Hosts 配置</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_9" class="nav-link">数据类型说明</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_11" class="nav-link">注意事项</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_12" class="nav-link">下一步</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="_1">快速入门</h1>
+<p>本指南将帮助你快速开始使用 htQuant。</p>
+<h2 id="_2">基本概念</h2>
+<p>htQuant 主要包含两个部分：
+- <strong>htData</strong> - 行情数据模块，提供历史数据和实时数据接口
+- <strong>utils</strong> - 提供各种辅助工具，如 HostsManager</p>
+<h2 id="_3">第一个程序</h2>
+<h3 id="1">1. 导入模块</h3>
+<pre><code class="language-python">from htQuant.htData.http import HistoricalClient
+from htQuant.htData.config import settings
+</code></pre>
+<h3 id="2">2. 创建客户端</h3>
+<h4 id="env">使用.env配置</h4>
+<ul>
+<li>.env 文件配置</li>
+</ul>
+<pre><code class="language-python">HTQUANT_HTTP_BASE_URL=http://your-api-url.com
+HTQUANT_HTTP_TIMEOUT=30
+</code></pre>
+<ul>
+<li>使用.env配置创建客户端</li>
+</ul>
+<pre><code class="language-python">client = HistoricalClient()
+</code></pre>
+<h4 id="_4">自定义配置</h4>
+<pre><code class="language-python">client = HistoricalClient(
+    base_url=&quot;http://your-api-url.com&quot;,
+    timeout=30
+)
+</code></pre>
+<h3 id="3">3. 登录认证</h3>
+<h4 id="_5">使用配置中的凭证</h4>
+<ul>
+<li>.env 文件配置</li>
+</ul>
+<pre><code class="language-python">HTQUANT_HTTP_USERNAME=your_username
+HTQUANT_HTTP_PASSWORD=your_password
+</code></pre>
+<ul>
+<li>使用配置中的凭证登录</li>
+</ul>
+<pre><code class="language-python">client.connect()
+</code></pre>
+<h4 id="_6">使用参数凭证</h4>
+<pre><code class="language-python">client.connect(username=&quot;your_username&quot;, password=&quot;your_password&quot;)
+</code></pre>
+<h3 id="4">4. 获取数据</h3>
+<pre><code class="language-python"># 获取股票日线数据
+data = client.get_stock_data(
+    period=&quot;day1&quot;,           # 数据周期：day1=日线, min1=1分钟, min5=5分钟
+    data_type=&quot;stock&quot;,       # 数据类型：stock=股票, index=指数, etf=ETF
+    start=&quot;20240101 00:00:00&quot;,  # 开始时间
+    end=&quot;20240131 23:59:59&quot;,    # 结束时间
+    symbols=[&quot;000001&quot;, &quot;600000&quot;],  # 股票代码列表（最多10个）
+    params=&quot;&quot;                # 其他参数
+)
+
+# 处理数据
+for record in data:
+    print(f&quot;代码: {record['code']}, &quot;
+          f&quot;时间: {record['tradetime']}, &quot;
+          f&quot;收盘价: {record['close']}&quot;)
+</code></pre>
+<h3 id="5">5. 完整示例</h3>
+<pre><code class="language-python">from HongTaQuant.HongTaData.http import HistoricalClient
+
+def main():
+    # 创建客户端
+    client = HistoricalClient()
+
+    try:
+        # 登录
+        print(&quot;正在登录...&quot;)
+        client.connect()
+        print(&quot;✓ 登录成功&quot;)
+
+        # 获取平安银行近期日线数据
+        print(&quot;\n正在获取数据...&quot;)
+        data = client.get_stock_data(
+            period=&quot;day1&quot;,
+            data_type=&quot;stock&quot;,
+            start=&quot;20240101 00:00:00&quot;,
+            end=&quot;20240131 23:59:59&quot;,
+            symbols=[&quot;000001&quot;],
+            params=&quot;&quot;
+        )
+
+        print(f&quot;✓ 获取到 {len(data)} 条数据\n&quot;)
+
+        # 显示前5条数据
+        for record in data[:5]:
+            print(f&quot;{record['tradetime']}: &quot;
+                  f&quot;开 {record['open']:.2f}, &quot;
+                  f&quot;高 {record['high']:.2f}, &quot;
+                  f&quot;低 {record['low']:.2f}, &quot;
+                  f&quot;收 {record['close']:.2f}, &quot;
+                  f&quot;量 {record['volume']:.0f}&quot;)
+
+    except Exception as e:
+        print(f&quot;✗ 错误: {e}&quot;)
+
+    finally:
+        # 登出
+        client.close()
+        print(&quot;\n✓ 已登出&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h2 id="_7">环境变量配置</h2>
+<h3 id="env_1">创建 .env 文件</h3>
+<p>在项目根目录创建 <code>.env</code> 文件：</p>
+<pre><code class="language-bash"># HTTP 客户端配置
+HTQUANT_HTTP_BASE_URL=http://your-api-url.com
+HTQUANT_HTTP_USERNAME=your_username
+HTQUANT_HTTP_PASSWORD=your_password
+HTQUANT_HTTP_TIMEOUT=30
+</code></pre>
+<h3 id="_8">使用配置</h3>
+<pre><code class="language-python">from htQuant.htData.config import settings
+
+# 配置会自动从环境变量加载
+print(f&quot;Base URL: {settings.http_base_url}&quot;)
+print(f&quot;Timeout: {settings.http_timeout}&quot;)
+
+# 使用默认配置创建客户端
+client = HistoricalClient()
+client.connect()  # 使用配置中的用户名和密码
+</code></pre>
+<h2 id="hosts">Hosts 配置</h2>
+<p>如果需要配置 hosts 映射：</p>
+<pre><code class="language-python">from htQuant import HostsManager
+
+# 添加 hosts 映射（需要管理员权限）
+try:
+    HostsManager.add_host(
+        &quot;HOST IP地址&quot;,
+        &quot;Host 域名地址&quot;,
+        &quot;Host 描述&quot;
+    )
+    print(&quot;✓ Hosts 配置成功&quot;)
+except PermissionError:
+    print(&quot;✗ 需要管理员权限&quot;)
+</code></pre>
+<h2 id="_9">数据类型说明</h2>
+<h3 id="period">period（周期）</h3>
+<ul>
+<li><code>min1</code> - 1分钟线</li>
+<li><code>min5</code> - 5分钟线</li>
+<li><code>day1</code> - 日线</li>
+</ul>
+<h3 id="data_type">data_type（数据类型）</h3>
+<ul>
+<li><code>stock</code> - 股票</li>
+<li><code>index</code> - 指数</li>
+<li><code>etf</code> - ETF</li>
+<li><code>hk</code> - 港股</li>
+<li><code>bond</code> - 债券</li>
+<li><code>option</code> - 期权</li>
+<li><code>bsm</code> - BSM期权</li>
+</ul>
+<h3 id="_10">股票代码格式</h3>
+<ul>
+<li>深圳股票：<code>000001</code></li>
+<li>上海股票：<code>600000</code></li>
+<li>最多一次查询 10 个股票</li>
+</ul>
+<h2 id="_11">注意事项</h2>
+<ol>
+<li><strong>时间格式</strong>：必须使用 <code>yyyyMMdd HH:mm:ss</code> 格式</li>
+<li><strong>时间范围</strong>：单次查询时间跨度不能超过 1 年</li>
+<li><strong>股票数量</strong>：单次查询最多 10 个股票代码</li>
+<li><strong>权限要求</strong>：需要有效的 htQuant 账号</li>
+</ol>
+<h2 id="_12">下一步</h2>
+<ul>
+<li><a href="../configuration/">配置详解</a> - 了解详细的配置选项</li>
+<li><a href="../../guide/http-client/">HTTP 客户端</a> - 深入了解 HTTP 客户端</li>
+<li><a href="../../guide/data-models/">数据模型</a> - 了解数据结构</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
