@@ -158,17 +158,17 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="_1">配置</h1>
-<p>HongTaQuant 提供了灵活的配置系统，支持多种配置方式。</p>
+<p>htQuant 提供了灵活的配置系统，支持多种配置方式。</p>
 <h2 id="_2">配置方式</h2>
 <p>配置按以下优先级加载（从高到低）：</p>
 <ol>
 <li>直接传递给类的参数</li>
-<li>环境变量（前缀 <code>HONGTA_</code>）</li>
+<li>环境变量（前缀 <code>HTQUANT_</code>）</li>
 <li><code>.env</code> 文件</li>
 </ol>
 <h2 id="_3">环境变量配置</h2>
 <h3 id="_4">可用的环境变量</h3>
-<p>所有环境变量都使用 <code>HONGTA_</code> 前缀：</p>
+<p>所有环境变量都使用 <code>HTQUANT_</code> 前缀：</p>
 <table>
 <thead>
 <tr>
@@ -179,22 +179,22 @@
 </thead>
 <tbody>
 <tr>
-<td><code>HONGTA_HTTP_BASE_URL</code></td>
+<td><code>HTQUANT_HTTP_BASE_URL</code></td>
 <td>HTTP API 基础 URL</td>
 <td><code>http://your-api-url.com</code></td>
 </tr>
 <tr>
-<td><code>HONGTA_HTTP_USERNAME</code></td>
+<td><code>HTQUANT_HTTP_USERNAME</code></td>
 <td>HTTP API 用户名</td>
 <td><code>vue</code></td>
 </tr>
 <tr>
-<td><code>HONGTA_HTTP_PASSWORD</code></td>
+<td><code>HTQUANT_HTTP_PASSWORD</code></td>
 <td>HTTP API 密码</td>
 <td><code>vue</code></td>
 </tr>
 <tr>
-<td><code>HONGTA_HTTP_TIMEOUT</code></td>
+<td><code>HTQUANT_HTTP_TIMEOUT</code></td>
 <td>HTTP 请求超时时间（秒）</td>
 <td><code>30</code></td>
 </tr>
@@ -202,31 +202,31 @@
 </table>
 <h3 id="_5">设置环境变量</h3>
 <h4 id="windows-powershell">Windows (PowerShell)</h4>
-<pre><code class="language-powershell">$env:HONGTA_HTTP_BASE_URL = &quot;http://your-api-url.com&quot;
-$env:HONGTA_HTTP_USERNAME = &quot;your_username&quot;
-$env:HONGTA_HTTP_PASSWORD = &quot;your_password&quot;
-$env:HONGTA_HTTP_TIMEOUT = &quot;60&quot;
+<pre><code class="language-powershell">$env:HTQUANT_HTTP_BASE_URL = &quot;http://your-api-url.com&quot;
+$env:HTQUANT_HTTP_USERNAME = &quot;your_username&quot;
+$env:HTQUANT_HTTP_PASSWORD = &quot;your_password&quot;
+$env:HTQUANT_HTTP_TIMEOUT = &quot;60&quot;
 </code></pre>
 <h4 id="linuxmacos-bash">Linux/macOS (Bash)</h4>
-<pre><code class="language-bash">export HONGTA_HTTP_BASE_URL=&quot;http://your-api-url.com&quot;
-export HONGTA_HTTP_USERNAME=&quot;your_username&quot;
-export HONGTA_HTTP_PASSWORD=&quot;your_password&quot;
-export HONGTA_HTTP_TIMEOUT=&quot;60&quot;
+<pre><code class="language-bash">export HTQUANT_HTTP_BASE_URL=&quot;http://your-api-url.com&quot;
+export HTQUANT_HTTP_USERNAME=&quot;your_username&quot;
+export HTQUANT_HTTP_PASSWORD=&quot;your_password&quot;
+export HTQUANT_HTTP_TIMEOUT=&quot;60&quot;
 </code></pre>
 <h2 id="env">.env 文件配置</h2>
 <p>在项目根目录创建 <code>.env</code> 文件：</p>
 <pre><code class="language-bash"># HTTP 客户端配置
-HONGTA_HTTP_BASE_URL=http://your-api-url.com
-HONGTA_HTTP_USERNAME=your_username
-HONGTA_HTTP_PASSWORD=your_password
-HONGTA_HTTP_TIMEOUT=30
+HTQUANT_HTTP_BASE_URL=http://your-api-url.com
+HTQUANT_HTTP_USERNAME=your_username
+HTQUANT_HTTP_PASSWORD=your_password
+HTQUANT_HTTP_TIMEOUT=30
 </code></pre>
 <p>!!! warning "安全提示"
     <code>.env</code> 文件包含敏感信息，请勿提交到版本控制系统。
     建议将 <code>.env</code> 添加到 <code>.gitignore</code> 文件中。</p>
 <h2 id="_6">代码配置</h2>
 <h3 id="_7">使用全局配置</h3>
-<pre><code class="language-python">from HongTaQuant.HongTaData.config import settings
+<pre><code class="language-python">from htQuant.htData.config import settings
 
 # 读取配置
 print(f&quot;Base URL: {settings.http_base_url}&quot;)
@@ -234,7 +234,7 @@ print(f&quot;Username: {settings.http_username}&quot;)
 print(f&quot;Timeout: {settings.http_timeout}&quot;)
 </code></pre>
 <h3 id="_8">直接传参配置</h3>
-<pre><code class="language-python">from HongTaQuant.HongTaData.http import HistoricalClient
+<pre><code class="language-python">from htQuant.htData.http import HistoricalClient
 
 # 创建客户端时传递配置
 client = HistoricalClient(
@@ -250,7 +250,7 @@ client.connect(
 </code></pre>
 <h2 id="_9">配置示例</h2>
 <h3 id="1">示例 1：使用默认配置</h3>
-<pre><code class="language-python">from HongTaQuant.HongTaData.http import HistoricalClient
+<pre><code class="language-python">from htQuant.htData.http import HistoricalClient
 
 # 使用所有默认配置
 client = HistoricalClient()
@@ -259,15 +259,15 @@ client.connect()
 <h3 id="2">示例 2：使用环境变量</h3>
 <pre><code class="language-python"># 设置环境变量后
 import os
-os.environ[&quot;HONGTA_HTTP_TIMEOUT&quot;] = &quot;30&quot;
+os.environ[&quot;HTQUANT_HTTP_TIMEOUT&quot;] = &quot;30&quot;
 
-from HongTaQuant.HongTaData.http import HistoricalClient
+from htQuant.htData.http import HistoricalClient
 
 # 自动使用环境变量中的配置
 client = HistoricalClient()
 </code></pre>
 <h3 id="3">示例 3：混合配置</h3>
-<pre><code class="language-python">from HongTaQuant.HongTaData.http import HistoricalClient
+<pre><code class="language-python">from htQuant.htData.http import HistoricalClient
 
 # base_url 使用配置中的默认值
 # timeout 使用自定义值
@@ -277,7 +277,7 @@ client = HistoricalClient(timeout=120)
 client.connect()
 </code></pre>
 <h3 id="4">示例 4：完全自定义</h3>
-<pre><code class="language-python">from HongTaQuant.HongTaData.http import HistoricalClient
+<pre><code class="language-python">from htQuant.htData.http import HistoricalClient
 
 # 所有参数都自定义
 client = HistoricalClient(
@@ -292,7 +292,7 @@ client.connect(
 </code></pre>
 <h2 id="_10">配置验证</h2>
 <p>验证配置是否正确加载：</p>
-<pre><code class="language-python">from HongTaQuant.HongTaData.config import settings
+<pre><code class="language-python">from htQuant.htData.config import settings
 
 def validate_config():
     &quot;&quot;&quot;验证配置&quot;&quot;&quot;
@@ -345,7 +345,7 @@ validate_config()
 <h2 id="_12">故障排查</h2>
 <h3 id="_13">配置未生效</h3>
 <pre><code class="language-python"># 检查配置来源
-from HongTaQuant.HongTaData.config import settings
+from htQuant.htData.config import settings
 
 print(settings.model_dump())
 </code></pre>
@@ -353,10 +353,10 @@ print(settings.model_dump())
 <pre><code class="language-python">import os
 
 # 临时设置环境变量（最高优先级）
-os.environ[&quot;HONGTA_HTTP_TIMEOUT&quot;] = &quot;120&quot;
+os.environ[&quot;HTQUANT_HTTP_TIMEOUT&quot;] = &quot;120&quot;
 
 # 重新加载配置
-from HongTaQuant.HongTaData.config import Settings
+from htQuant.htData.config import Settings
 new_settings = Settings()
 print(new_settings.http_timeout)  # 120
 </code></pre>

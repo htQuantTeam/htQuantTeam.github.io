@@ -292,7 +292,7 @@ if __name__ == &quot;__main__&quot;:
     # cleanup_htquant_hosts()
 </code></pre>
 <h2 id="_10">异常处理</h2>
-<pre><code class="language-python">from HongTaQuant.utils import HostsManager
+<pre><code class="language-python">from htQuant.utils import HostsManager
 
 try:
     HostsManager.add_host(&quot;127.0.0.1&quot;, &quot;test.local&quot;)
@@ -307,7 +307,7 @@ except OSError as e:
 <ol>
 <li><strong>权限要求</strong>：修改 hosts 文件需要管理员/root 权限</li>
 <li><strong>备份建议</strong>：修改前建议先备份 hosts 文件</li>
-<li><strong>条目标记</strong>：所有通过 HostsManager 添加的条目会带有特殊标记 <code># Added by HongTaQuant</code></li>
+<li><strong>条目标记</strong>：所有通过 HostsManager 添加的条目会带有特殊标记 <code># Added by htQuant</code>，便于识别和管理</li>
 <li><strong>自动更新</strong>：如果主机名已存在，<code>add_host</code> 会自动更新其 IP 地址</li>
 <li><strong>跨平台</strong>：自动检测操作系统并使用正确的 hosts 文件路径</li>
 </ol>
@@ -376,7 +376,7 @@ except OSError as e:
 <p><strong>A:</strong> 使用 <code>list_custom_hosts()</code> 方法查看：</p>
 <pre><code class="language-python">custom_hosts = HostsManager.list_custom_hosts()
 </code></pre>
-<p>所有通过 HostsManager 添加的条目都会带有 <code># Added by HongTaQuant</code> 标记。</p></div>
+<p>所有通过 HostsManager 添加的条目都会带有 <code># Added by htQuant</code> 标记。</p></div>
             </div>
         </div>
 

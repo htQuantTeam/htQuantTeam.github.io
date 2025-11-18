@@ -154,7 +154,7 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="_1">数据模型</h1>
-<p>HongTaQuant 使用 Pydantic 定义数据模型，提供数据验证和类型安全。</p>
+<p>htQuant 使用 Pydantic 定义数据模型，提供数据验证和类型安全。</p>
 <h2 id="hsstockdata">HSStockData</h2>
 <p>沪深现货行情数据模型，包含完整的股票行情字段。</p>
 <p><strong>字段说明</strong></p>
@@ -280,7 +280,7 @@
 </tbody>
 </table>
 <p><strong>使用示例</strong></p>
-<pre><code class="language-python">from HongTaQuant.HongTaData.models import HSStockData
+<pre><code class="language-python">from htQuant.htData.models import HSStockData
 
 # 创建数据实例
 data = HSStockData(
@@ -339,8 +339,8 @@ except ValidationError as e:
     print(e)
 </code></pre>
 <h2 id="api">从 API 响应创建模型</h2>
-<pre><code class="language-python">from HongTaQuant.HongTaData.http import HistoricalClient
-from HongTaQuant.HongTaData.models import HSStockData
+<pre><code class="language-python">from htQuant.htData.http import HistoricalClient
+from htQuant.htData.models import HSStockData
 
 client = HistoricalClient()
 client.connect()
@@ -364,7 +364,7 @@ for data in stock_data:
 </code></pre>
 <h2 id="pandas">与 Pandas 集成</h2>
 <pre><code class="language-python">import pandas as pd
-from HongTaQuant.HongTaData.models import HSStockData
+from htQuant.htData.models import HSStockData
 
 # 从 DataFrame 创建模型
 df = pd.DataFrame(raw_data)
@@ -377,7 +377,7 @@ df = pd.DataFrame([data.model_dump() for data in stock_data])
 <h2 id="_2">数据序列化</h2>
 <p><strong>JSON 序列化</strong></p>
 <pre><code class="language-python">import json
-from HongTaQuant.HongTaData.models import HSStockData
+from htQuant.htData.models import HSStockData
 
 data = HSStockData(...)
 
@@ -402,7 +402,7 @@ data_dict = data.model_dump(include={'code', 'close', 'volume'})
 </code></pre>
 <h2 id="_3">自定义验证</h2>
 <pre><code class="language-python">from pydantic import field_validator
-from HongTaQuant.HongTaData.models import HSStockData
+from htQuant.htData.models import HSStockData
 
 class ValidatedStockData(HSStockData):
     @field_validator('close')
@@ -449,7 +449,7 @@ class ValidatedStockData(HSStockData):
 <h2 id="_5">最佳实践</h2>
 <p><strong>使用类型提示</strong></p>
 <pre><code class="language-python">from typing import List
-from HongTaQuant.HongTaData.models import HSStockData
+from htQuant.htData.models import HSStockData
 
 def process_data(data: List[HSStockData]) -&gt; None:
     for item in data:
