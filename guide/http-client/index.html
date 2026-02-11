@@ -173,6 +173,12 @@ client.connect(username=&quot;your_user&quot;, password=&quot;your_pass&quot;)
     params=&quot;&quot;
 )
 </code></pre>
+<p><strong>获取期权基础信息</strong></p>
+<pre><code class="language-python">option_info = client.get_option_info(
+    date=&quot;20240131&quot;,
+    exchange=&quot;SSE&quot;
+)
+</code></pre>
 <p><strong>关闭连接</strong></p>
 <pre><code class="language-python">client.close()
 </code></pre>
@@ -250,6 +256,30 @@ client.connect(username=&quot;your_user&quot;, password=&quot;your_pass&quot;)
 <li>格式：<code>yyyyMMdd HH:mm:ss</code></li>
 <li>示例：<code>20240101 09:30:00</code></li>
 <li>限制：时间跨度不超过 1 年</li>
+</ul>
+<p><strong>exchange（交易所代码）</strong></p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SSE</code></td>
+<td>上交所</td>
+</tr>
+<tr>
+<td><code>SZSE</code></td>
+<td>深交所</td>
+</tr>
+</tbody>
+</table>
+<p><strong>date（查询日期）</strong></p>
+<ul>
+<li>格式：<code>yyyyMMdd</code></li>
+<li>示例：<code>20240131</code></li>
 </ul>
 <h2 id="_3">常见问题</h2>
 <p><strong>Q: 如何获取最新数据？</strong></p>
