@@ -163,13 +163,14 @@ client.connect()
 # 使用自定义凭证
 client.connect(username=&quot;your_user&quot;, password=&quot;your_pass&quot;)
 </code></pre>
+<p>联系我们获取 API URL 和凭证</p>
 <p><strong>获取数据</strong></p>
 <pre><code class="language-python">data = client.get_stock_data(
     period=&quot;day1&quot;,
     data_type=&quot;stock&quot;,
     start=&quot;20240101 00:00:00&quot;,
     end=&quot;20240131 23:59:59&quot;,
-    symbols=[&quot;000001.SZ&quot;],
+    symbols=[&quot;000001&quot;],
     params=&quot;&quot;
 )
 </code></pre>
