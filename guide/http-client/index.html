@@ -122,7 +122,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">参数说明</a>
+            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">接口说明</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -165,7 +165,12 @@ client.connect()
 client.connect(username=&quot;your_user&quot;, password=&quot;your_pass&quot;)
 </code></pre>
 <p>联系我们获取 API URL 和凭证</p>
-<p><strong>获取数据</strong></p>
+<p><strong>关闭连接</strong></p>
+<pre><code class="language-python">client.close()
+</code></pre>
+<h2 id="_2">接口说明</h2>
+<h3 id="get_stock_data">get_stock_data</h3>
+<p>用于获取历史行情数据。</p>
 <pre><code class="language-python">data = client.get_stock_data(
     period=&quot;day1&quot;,
     data_type=&quot;stock&quot;,
@@ -175,17 +180,7 @@ client.connect(username=&quot;your_user&quot;, password=&quot;your_pass&quot;)
     params=&quot;&quot;
 )
 </code></pre>
-<p><strong>获取期权基础信息</strong></p>
-<pre><code class="language-python">option_info = client.get_option_info(
-    date=&quot;20240131&quot;,
-    exchange=&quot;SSE&quot;
-)
-</code></pre>
-<p><strong>关闭连接</strong></p>
-<pre><code class="language-python">client.close()
-</code></pre>
-<h2 id="_2">参数说明</h2>
-<p><strong>period（数据周期）</strong></p>
+<p><strong>period（历史行情周期）</strong></p>
 <table>
 <thead>
 <tr>
@@ -205,18 +200,6 @@ client.connect(username=&quot;your_user&quot;, password=&quot;your_pass&quot;)
 <tr>
 <td><code>day1</code></td>
 <td>日线</td>
-</tr>
-<tr>
-<td><code>base</code></td>
-<td>基础数据</td>
-</tr>
-<tr>
-<td><code>info</code></td>
-<td>资讯信息</td>
-</tr>
-<tr>
-<td><code>adjust</code></td>
-<td>复权因子</td>
 </tr>
 </tbody>
 </table>
@@ -271,6 +254,13 @@ client.connect(username=&quot;your_user&quot;, password=&quot;your_pass&quot;)
 <li>示例：<code>20240101 09:30:00</code></li>
 <li>限制：时间跨度不超过 1 年</li>
 </ul>
+<h3 id="get_option_info">get_option_info</h3>
+<p>用于获取期权基础信息。</p>
+<pre><code class="language-python">option_info = client.get_option_info(
+    date=&quot;20240131&quot;,
+    exchange=&quot;SSE&quot;
+)
+</code></pre>
 <p><strong>exchange（交易所代码）</strong></p>
 <table>
 <thead>
@@ -294,6 +284,118 @@ client.connect(username=&quot;your_user&quot;, password=&quot;your_pass&quot;)
 <ul>
 <li>格式：<code>yyyyMMdd</code></li>
 <li>示例：<code>20240131</code></li>
+</ul>
+<h3 id="get_security_info">get_security_info</h3>
+<p>用于获取证券基础信息。</p>
+<pre><code class="language-python">security_info = client.get_security_info(
+    listed_sector=&quot;MAIN&quot;,
+    market_type=&quot;SSE&quot;,
+    security_category=&quot;ETF&quot;
+)
+</code></pre>
+<p>接口路径：<code>/api/base-data/security/info</code></p>
+<p>请求方式：<code>GET</code></p>
+<p><strong>listed_sector（上市板块）</strong></p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MAIN</code></td>
+<td>主板</td>
+</tr>
+<tr>
+<td><code>MID</code></td>
+<td>中小板</td>
+</tr>
+<tr>
+<td><code>THIRD</code></td>
+<td>新三板</td>
+</tr>
+<tr>
+<td><code>STARTUP</code></td>
+<td>创业板</td>
+</tr>
+<tr>
+<td><code>TECH</code></td>
+<td>科创板</td>
+</tr>
+</tbody>
+</table>
+<p><strong>market_type（市场类型）</strong></p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SSE</code></td>
+<td>上海证券交易所</td>
+</tr>
+<tr>
+<td><code>SZSE</code></td>
+<td>深圳证券交易所</td>
+</tr>
+<tr>
+<td><code>SHFE</code></td>
+<td>上海期货交易所</td>
+</tr>
+<tr>
+<td><code>CZCE</code></td>
+<td>郑州商品交易所</td>
+</tr>
+<tr>
+<td><code>DCE</code></td>
+<td>大连商品交易所</td>
+</tr>
+<tr>
+<td><code>INE</code></td>
+<td>上海国际能源交易中心</td>
+</tr>
+<tr>
+<td><code>GFEX</code></td>
+<td>广州期货交易所</td>
+</tr>
+<tr>
+<td><code>CFFEX</code></td>
+<td>中国金融期货交易所</td>
+</tr>
+</tbody>
+</table>
+<p><strong>security_category（证券类别）</strong></p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STK</code></td>
+<td>股票</td>
+</tr>
+<tr>
+<td><code>CBD</code></td>
+<td>可转债</td>
+</tr>
+<tr>
+<td><code>ETF</code></td>
+<td>交易型开放式指数基金</td>
+</tr>
+</tbody>
+</table>
+<p><strong>说明</strong></p>
+<ul>
+<li>该接口直接使用文档中提供的枚举值，不需要做 base/db 编码转换。</li>
+<li>三个参数必须分别传入对应的枚举值。</li>
 </ul>
 <h2 id="_3">常见问题</h2>
 <p><strong>Q: 如何获取最新数据？</strong></p>

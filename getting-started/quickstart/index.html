@@ -134,15 +134,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#_9" class="nav-link">数据类型说明</a>
+            <li class="nav-item" data-bs-level="2"><a href="#_9" class="nav-link">注意事项</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#_11" class="nav-link">注意事项</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#_12" class="nav-link">下一步</a>
+            <li class="nav-item" data-bs-level="2"><a href="#_10" class="nav-link">下一步</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -203,15 +199,16 @@ HTQUANT_HTTP_PASSWORD=your_password
 <h4 id="_6">使用参数凭证</h4>
 <pre><code class="language-python">client.connect(username=&quot;your_username&quot;, password=&quot;your_password&quot;)
 </code></pre>
-<h3 id="4">4. 获取数据</h3>
+<h3 id="4">4. 获取接口数据</h3>
+<h4 id="get_stock_data">get_stock_data</h4>
 <pre><code class="language-python"># 获取股票日线数据
 data = client.get_stock_data(
-    period=&quot;day1&quot;,           # 数据周期：day1=日线, min1=1分钟, min5=5分钟
-    data_type=&quot;stock&quot;,       # 数据类型：stock=股票, index=指数, etf=ETF
-    start=&quot;20240101 00:00:00&quot;,  # 开始时间
-    end=&quot;20240131 23:59:59&quot;,    # 结束时间
-    symbols=[&quot;000001&quot;, &quot;600000&quot;],  # 股票代码列表（最多10个）
-    params=&quot;&quot;                # 其他参数
+    period=&quot;day1&quot;,
+    data_type=&quot;stock&quot;,
+    start=&quot;20240101 00:00:00&quot;,
+    end=&quot;20240131 23:59:59&quot;,
+    symbols=[&quot;000001&quot;, &quot;600000&quot;],
+    params=&quot;&quot;
 )
 
 # 处理数据
@@ -220,6 +217,38 @@ for record in data:
           f&quot;时间: {record['tradetime']}, &quot;
           f&quot;收盘价: {record['close']}&quot;)
 </code></pre>
+<p><strong>常用参数</strong></p>
+<ul>
+<li><code>period</code>：支持 <code>min1</code>、<code>min5</code>、<code>day1</code></li>
+<li><code>data_type</code>：支持 <code>stock</code>、<code>index</code>、<code>etf</code>、<code>hk</code>、<code>bond</code>、<code>option</code>、<code>bsm</code></li>
+<li><code>symbols</code>：股票代码列表，单次最多 10 个</li>
+<li><code>start</code> / <code>end</code>：时间格式必须为 <code>yyyyMMdd HH:mm:ss</code>，单次查询跨度不能超过 1 年</li>
+</ul>
+<h4 id="get_option_info">get_option_info</h4>
+<pre><code class="language-python">option_info = client.get_option_info(
+    date=&quot;20240131&quot;,
+    exchange=&quot;SSE&quot;
+)
+</code></pre>
+<p><strong>常用参数</strong></p>
+<ul>
+<li><code>date</code>：查询日期，格式为 <code>yyyyMMdd</code></li>
+<li><code>exchange</code>：支持 <code>SSE</code>、<code>SZSE</code></li>
+</ul>
+<h4 id="get_security_info">get_security_info</h4>
+<pre><code class="language-python">security_info = client.get_security_info(
+    listed_sector=&quot;MAIN&quot;,
+    market_type=&quot;SSE&quot;,
+    security_category=&quot;ETF&quot;
+)
+</code></pre>
+<p><strong>常用参数</strong></p>
+<ul>
+<li><code>listed_sector</code>：支持 <code>MAIN</code>、<code>MID</code>、<code>THIRD</code>、<code>STARTUP</code>、<code>TECH</code></li>
+<li><code>market_type</code>：支持 <code>SSE</code>、<code>SZSE</code>、<code>BJSE</code>、<code>SHFE</code>、<code>CZCE</code>、<code>DCE</code>、<code>INE</code>、<code>GFEX</code>、<code>CFFEX</code></li>
+<li><code>security_category</code>：支持 <code>STK</code>、<code>CBD</code>、<code>ETF</code></li>
+<li>该接口直接使用枚举值，不需要做 base/db 编码转换</li>
+</ul>
 <h3 id="5">5. 完整示例</h3>
 <pre><code class="language-python">from htQuant.htData.http import HistoricalClient
 
@@ -301,37 +330,14 @@ try:
 except PermissionError:
     print(&quot;✗ 需要管理员权限&quot;)
 </code></pre>
-<h2 id="_9">数据类型说明</h2>
-<h3 id="period">period（周期）</h3>
-<ul>
-<li><code>min1</code> - 1分钟线</li>
-<li><code>min5</code> - 5分钟线</li>
-<li><code>day1</code> - 日线</li>
-</ul>
-<h3 id="data_type">data_type（数据类型）</h3>
-<ul>
-<li><code>stock</code> - 股票</li>
-<li><code>index</code> - 指数</li>
-<li><code>etf</code> - ETF</li>
-<li><code>hk</code> - 港股</li>
-<li><code>bond</code> - 债券</li>
-<li><code>option</code> - 期权</li>
-<li><code>bsm</code> - BSM期权</li>
-</ul>
-<h3 id="_10">股票代码格式</h3>
-<ul>
-<li>深圳股票：<code>000001</code></li>
-<li>上海股票：<code>600000</code></li>
-<li>最多一次查询 10 个股票</li>
-</ul>
-<h2 id="_11">注意事项</h2>
+<h2 id="_9">注意事项</h2>
 <ol>
 <li><strong>时间格式</strong>：必须使用 <code>yyyyMMdd HH:mm:ss</code> 格式</li>
 <li><strong>时间范围</strong>：单次查询时间跨度不能超过 1 年</li>
 <li><strong>股票数量</strong>：单次查询最多 10 个股票代码</li>
 <li><strong>权限要求</strong>：需要有效的 htQuant 账号</li>
 </ol>
-<h2 id="_12">下一步</h2>
+<h2 id="_10">下一步</h2>
 <ul>
 <li><a href="../configuration/">配置详解</a> - 了解详细的配置选项</li>
 <li><a href="../../guide/http-client/">HTTP 客户端</a> - 深入了解 HTTP 客户端</li>
