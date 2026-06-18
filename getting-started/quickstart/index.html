@@ -207,7 +207,7 @@ data = client.get_stock_data(
     data_type=&quot;stock&quot;,
     start=&quot;20240101 00:00:00&quot;,
     end=&quot;20240131 23:59:59&quot;,
-    symbols=[&quot;000001&quot;, &quot;600000&quot;],
+    symbols=[&quot;SZSE.STK.000001&quot;, &quot;SSE.STK.600000&quot;],
     params=&quot;&quot;
 )
 
@@ -238,16 +238,28 @@ for record in data:
 <h4 id="get_security_info">get_security_info</h4>
 <pre><code class="language-python">security_info = client.get_security_info(
     listed_sector=&quot;MAIN&quot;,
-    market_type=&quot;SSE&quot;,
+    market=&quot;SSE&quot;,
     security_category=&quot;ETF&quot;
 )
 </code></pre>
 <p><strong>常用参数</strong></p>
 <ul>
 <li><code>listed_sector</code>：支持 <code>MAIN</code>、<code>MID</code>、<code>THIRD</code>、<code>STARTUP</code>、<code>TECH</code></li>
-<li><code>market_type</code>：支持 <code>SSE</code>、<code>SZSE</code>、<code>BJSE</code>、<code>SHFE</code>、<code>CZCE</code>、<code>DCE</code>、<code>INE</code>、<code>GFEX</code>、<code>CFFEX</code></li>
+<li><code>market</code>：支持 <code>SSE</code>、<code>SZSE</code>、<code>BJSE</code>、<code>SHFE</code>、<code>CZCE</code>、<code>DCE</code>、<code>INE</code>、<code>GFEX</code>、<code>CFFEX</code></li>
 <li><code>security_category</code>：支持 <code>STK</code>、<code>CBD</code>、<code>ETF</code></li>
-<li>该接口直接使用枚举值，不需要做 base/db 编码转换</li>
+<li>传入枚举字符串后，SDK 会自动映射为内部编码值再发起请求</li>
+</ul>
+<h4 id="get_adjust_factor">get_adjust_factor</h4>
+<pre><code class="language-python">factor_data = client.get_adjust_factor(
+    start=&quot;20240101&quot;,
+    end=&quot;20240131&quot;,
+    symbols=[&quot;SZSE.STK.000001&quot;, &quot;SSE.STK.600000&quot;]
+)
+</code></pre>
+<p><strong>常用参数</strong></p>
+<ul>
+<li><code>symbols</code>：股票代码列表，单次最多 10 个</li>
+<li><code>start</code> / <code>end</code>：时间格式必须为 <code>yyyyMMdd</code>，单次查询跨度不能超过 1 年</li>
 </ul>
 <h3 id="5">5. 完整示例</h3>
 <pre><code class="language-python">from htQuant.htData.http import HistoricalClient
@@ -269,7 +281,7 @@ def main():
             data_type=&quot;stock&quot;,
             start=&quot;20240101 00:00:00&quot;,
             end=&quot;20240131 23:59:59&quot;,
-            symbols=[&quot;000001&quot;],
+            symbols=[&quot;SZSE.STK.000001&quot;],
             params=&quot;&quot;
         )
 
